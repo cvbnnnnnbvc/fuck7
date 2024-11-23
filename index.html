@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无法举报的网页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 弹窗函数，利用 setInterval 防止关闭
+        function showAlert() {
+            alert("操你妈逼的QQ");
+            setTimeout(showAlert, 0); // 强制弹窗每隔0毫秒再次弹出
+        }
+
+        // 页面加载时立即弹出
+        window.onload = function() {
+            showAlert();
+        };
+    </script>
+</body>
+</html>
