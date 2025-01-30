@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Minecraft 基础命令</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+<h2 id="picker-title">Minecraft 基础命令</h2>
+<section id="picker-menu">
+    <div class="picker-menu-1">
+        <span class="picker-header">防止爆炸破坏方块</span><br>
+        <span class="picker-text">
+            /gamerule mobGriefing false
+        </span>
+    </div>
+    <div class="picker-menu-1">
+        <span class="picker-header">给所有玩家超强抗性</span><br>
+        <span class="picker-text">
+            /effect give @a minecraft:resistance 999999 255 true
+        </span>
+    </div>
+</section>
+
+<section class="picker-button-wrapper picker-buttons">
+  <div class="button picker-button1" id="copy-command"><span>复制选中的命令</span></div>
+  <a href="index.html">
+    <div class="button picker-button1"><span>返回</span></div>
+    </a>
+    <a href="">
+      <div class="button picker-button2" disabled><span>???</span></div>
+    </a> 
+    <a href="">
+      <div class="button picker-button2 grid-button4" disabled><span>???</span></div>
+    </a> 
+    <a href="">
+      <div class="button picker-button2 grid-button5"><span>???</span></div>
+    </a> 
+    <a href="">
+      <div class="button picker-button2 grid-button6"><span>???</span></div>
+    </a> 
+</section>
+<footer> 
+    <span class="left">
+        Template made by 
+        <a class="bold" href="https://github.com/Steve-Tech">@xvanxvan</a>.</span> 
+        <span class="right">
+            This site is not an official Minecraft product, nor is it approved by or associated with Mojang. 
+            <br>本网站著作权由 @xvanxvan 所有，仅供交流学习。
+        </span> 
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuItems = document.querySelectorAll(".picker-menu-1");
+        let selectedText = ""; // 存储选中的命令
+    
+        // 监听选项点击
+        menuItems.forEach(item => {
+            item.addEventListener("click", function () {
+                // 先移除所有选中状态
+                menuItems.forEach(menu => menu.classList.remove("selected"));
+    
+                // 添加选中状态
+                this.classList.add("selected");
+    
+                // 获取选中的命令文本
+                selectedText = this.querySelector(".picker-text").innerText;
+            });
+        });
+    
+        // 监听"复制选中的命令"按钮点击
+        document.getElementById("copy-command").addEventListener("click", function () {
+            if (selectedText) {
+                // 复制选中的命令到剪贴板
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(selectedText).then(() => {
+                        console.log("命令已复制：" + selectedText); 
+                    }).catch(err => {
+                        console.error("复制失败:", err);
+                    });
+                } else {
+                    // 备用方案：使用临时文本框复制（兼容旧版浏览器）
+                    const textarea = document.createElement('textarea');
+                    textarea.value = selectedText;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        console.log("命令已复制：" + selectedText);
+                    } catch (err) {
+                        console.error("复制失败:", err);
+                    }
+                    document.body.removeChild(textarea);
+                }
+            } else {
+                console.error("没有选中任何命令！");
+            }
+        });
+    });
+</script>
+</body>
+</html>
