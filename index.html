@@ -7,13 +7,16 @@
 <link rel="stylesheet" href="css/style.css" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
+<embed src="mp3/background.mp3" autoplay="true" loop="true" width="0" height="0">
 </head>
 <body id="panorama">
 <img alt="Minecraft" id="logo" src="img/minecraft.png" />
 <div id="flashingtext">@xvanxvan!</div>
 <main class="button-wrapper"> 
-    <a href="worlds.html">
-        <div class="button"><span>Minecraft 基础命令</span></div>
+    <a href="javascript:void(0)">
+        <div class="button" id="btn" onclick="playSoundAndRedirect()">
+            <span>Minecraft 基础命令</span>
+        </div>
     </a> 
 </main>
 <footer> 
@@ -25,5 +28,16 @@
             <br>本网站著作权由 @xvanxvan 所有，仅供交流学习。
         </span> 
 </footer>
+<script>
+    function playSoundAndRedirect() {
+      var audio = new Audio('mp3/button.mp3');
+      audio.play();
+      
+      // 等待音效播放完成后再跳转
+      audio.onended = function() {
+        window.location.href = 'worlds.html';
+      };
+    }
+  </script>
 </body>
 </html>
