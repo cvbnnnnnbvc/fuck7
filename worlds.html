@@ -57,6 +57,15 @@
         </span> 
 </footer>
 <script>
+    // 创建一个 Audio 对象并设置预加载
+    var buttonAudio = new Audio('mp3/button.mp3');
+    buttonAudio.preload = 'auto'; // 自动预加载音频文件
+
+    // 在页面加载时就加载音效
+    window.onload = function() {
+        buttonAudio.load(); // 预加载到内存
+    };
+
     document.addEventListener("DOMContentLoaded", function () {
         const menuItems = document.querySelectorAll(".picker-menu-1");
         let selectedText = ""; // 存储选中的命令
@@ -107,18 +116,17 @@
 </script>
 <script>
     function playSound() {
-      var audio = new Audio('mp3/button.mp3');
-      audio.play();
+        buttonAudio.play(); // 播放已预加载的音效
     }
+
     function playSoundAndRedirect() {
-      var audio = new Audio('mp3/button.mp3');
-      audio.play();
-      
-      // 等待音效播放完成后再跳转
-      audio.onended = function() {
-        window.location.href = 'index.html';
-      };
+        buttonAudio.play(); // 播放已预加载的音效
+        
+        // 等待音效播放完成后再跳转
+        buttonAudio.onended = function() {
+            window.location.href = 'index.html';
+        };
     }
-  </script>
+</script>
 </body>
 </html>
