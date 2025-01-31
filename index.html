@@ -29,15 +29,23 @@
         </span> 
 </footer>
 <script>
+    // 创建一个 Audio 对象并设置预加载
+    var buttonAudio = new Audio('mp3/button.mp3');
+    buttonAudio.preload = 'auto'; // 自动预加载音频文件
+
+    // 在页面加载时就加载音效
+    window.onload = function() {
+      buttonAudio.load(); // 预加载到内存
+    };
+
     function playSoundAndRedirect() {
-      var audio = new Audio('mp3/button.mp3');
-      audio.play();
+      buttonAudio.play(); // 播放已加载的音效
       
       // 等待音效播放完成后再跳转
-      audio.onended = function() {
+      buttonAudio.onended = function() {
         window.location.href = 'worlds.html';
       };
     }
-  </script>
+</script>
 </body>
 </html>
